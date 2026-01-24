@@ -4,10 +4,22 @@
 
 :root {
   --apti-bg: #fdfdfd;
+  --apti-primary: #2563eb;
+  color-scheme: light;
 }
 
 .dark {
   --apti-bg: #0a0a0a;
+  color-scheme: dark;
+}
+
+.light {
+  --apti-bg: #fdfdfd;
+  color-scheme: light;
+}
+
+html {
+  background-color: var(--apti-bg);
 }
 
 body {
@@ -34,4 +46,8 @@ body {
 
 .calc-btn-action {
   @apply bg-blue-600 text-white hover:bg-blue-700 shadow-lg shadow-blue-600/20;
+}
+
+kbd {
+  @apply px-2 py-1 text-xs font-mono bg-slate-200 dark:bg-slate-700 rounded border border-slate-300 dark:border-slate-600;
 }
