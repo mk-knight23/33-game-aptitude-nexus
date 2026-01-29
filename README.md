@@ -128,7 +128,10 @@ MIT License - see [LICENSE](LICENSE) for details
 
 ---
 
-**Live Demo:** [https://mk-knight23.github.io/39-Aptitude-Calculator/](https://mk-knight23.github.io/39-Aptitude-Calculator/)
+### Live Demo
+- GitHub Pages: <https://mk-knight23.github.io/39-Aptitude-Calculator/>
+- Vercel: [Deploy your own](https://vercel.com/new)
+- Netlify: [Deploy your own](https://app.netlify.com/start)
 
 ---
 
