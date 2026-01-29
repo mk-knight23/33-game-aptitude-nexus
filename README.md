@@ -2,22 +2,53 @@
 
 A professional-grade application for mathematical calculations and logical aptitude testing. Built with React 18, TypeScript, and Tailwind CSS.
 
+## Features Comparison
+
+| Feature | v1.0 | v2.0 (Current) |
+|:---|:---|:---|
+| **Question Bank** | 5 questions | **45 questions (15 per category)** |
+| **Test Categories** | Mixed only | **Math, Logic, Verbal, or Mixed** |
+| **Calculator** | Basic operations | **Scientific mode with memory & history** |
+| **Analytics** | Basic score | **Performance level, trends, suggestions** |
+| **Progress Tracking** | History only | **Visual charts and improvement tips** |
+
 ## Features
 
-- **Scientific Calculator** - Robust mathematical engine powered by Math.js for complex calculations.
-- **Aptitude Assessments** - Comprehensive testing engine with multiple categories including Math, Logic, and Verbal reasoning.
-- **Performance Analytics** - Detailed results view with score breakdown and time tracking.
-- **Assessment History** - Persistent tracking of previous test performances via Zustand and localStorage.
-- **Modern Interface** - Clean, professional design with smooth transitions and animations.
-- **Dark/Light Mode** - Adaptive interface that respects your system or manual theme preferences.
-- **Mobile Optimized** - Fully responsive layout for testing on any device.
+### Scientific Calculator
+- **Basic Mode**: Standard arithmetic operations (+, -, ×, ÷)
+- **Scientific Mode**: Trigonometry (sin, cos, tan), logarithms, exponents, roots
+- **Memory Functions**: MC, MR, M+, M- for storing values
+- **History**: Recent calculations with clickable results
+- **Constants**: π and e support
+- **Percentage**: Quick percentage calculations
+
+### Aptitude Assessments
+- **45 Questions**: Comprehensive question bank across all categories
+  - 15 Math questions (easy, medium, hard)
+  - 15 Logic questions (easy, medium, hard)
+  - 15 Verbal questions (easy, medium, hard)
+- **Category Selection**: Choose specific category or take a mixed test
+- **Adaptive Testing**: Questions are randomly selected for each attempt
+
+### Performance Analytics
+- **Performance Levels**: Beginner, Novice, Intermediate, Advanced, Expert
+- **Visual Score Ring**: Circular progress indicator
+- **Trend Analysis**: Compare your performance against average
+- **Suggestions**: Personalized improvement tips based on results
+- **Progress Charts**: Visual representation of your last 5 test results
+
+### User Experience
+- **Dark/Light Mode**: Adaptive interface that respects your system or manual theme preferences
+- **Smooth Animations**: Framer Motion powered transitions
+- **Mobile Optimized**: Fully responsive layout for testing on any device
+- **Persistent History**: All test results saved locally
 
 ## Tech Stack
 
-- **React 18** - UI foundation
+- **React 18** - UI foundation with hooks
 - **TypeScript** - Type safety and developer experience
-- **Vite** - Build optimization and development speed
-- **Tailwind CSS** - Modern layout and styling
+- **Vite 6** - Build optimization and development speed
+- **Tailwind CSS v4** - Modern layout and styling
 - **Zustand** - Global state and persistence
 - **Framer Motion** - High-quality UI animations
 - **Math.js** - Advanced mathematical processing
@@ -27,8 +58,8 @@ A professional-grade application for mathematical calculations and logical aptit
 
 ### Prerequisites
 
-- Node.js 18+
-- npm 9+
+- Node.js 20+
+- npm 10+
 
 ### Installation
 
@@ -56,41 +87,58 @@ npm run build
 npm run preview
 ```
 
-## Project Structure
+## Test Categories
 
-```
-39-Aptitude-Calculator/
-├── src/
-│   ├── components/
-│   │   ├── calculator/    # Scientific calc components
-│   │   ├── test/          # Assessment engine components
-│   │   ├── Dashboard.tsx  # Main action hub
-│   │   └── ResultsView.tsx # Assessment analytics
-│   ├── stores/
-│   │   └── aptiStore.ts   # Global assessment state
-│   ├── types/
-│   │   └── apti.ts        # TS interfaces
-│   ├── data/
-│   │   └── questions.ts   # Assessment dataset
-│   ├── App.tsx            # Navigation and layout
-│   └── index.css          # Global styles & button variants
-├── package.json
-├── tsconfig.json
-└── vite.config.ts
-```
+### Mathematics
+- Number sequences and patterns
+- Percentages and ratios
+- Algebra and equations
+- Geometry
+- Time, speed, and distance problems
+- Compound interest
+
+### Logic
+- Coding and decoding
+- Blood relations
+- Direction sense
+- Series completion
+- Odd one out
+- Mathematical operations
+- Seating arrangements
+
+### Verbal
+- Synonyms and antonyms
+- One-word substitutions
+- Idioms and phrases
+- Grammar and parts of speech
+- Figures of speech
+- Voice and narration
 
 ## Deployment
 
 This project includes a GitHub Actions workflow for automatic deployment to GitHub Pages.
 
-1. Enable GitHub Pages in repository settings.
-2. Set source to "GitHub Actions".
-3. Push to the `main` branch to trigger deployment.
+1. Enable GitHub Pages in repository settings
+2. Set source to "GitHub Actions"
+3. Push to the `main` branch to trigger deployment
 
 ## License
 
-MIT License - see [LICENSE](LICENSE) for details.
+MIT License - see [LICENSE](LICENSE) for details
 
 ---
 
 **Live Demo:** [https://mk-knight23.github.io/39-Aptitude-Calculator/](https://mk-knight23.github.io/39-Aptitude-Calculator/)
+
+---
+
+## 📝 Design Notes (V2)
+
+### Intentional Quirk: The Mastery Rank System
+I added a ranking system (Rookie → Student → Practitioner → Adept → Expert → Grandmaster) based on test count and performance. It's completely arbitrary—20 tests at 80%+ gets you Grandmaster. Why? Humans love progress bars. The ranks mean nothing objectively, but they feel like achievement. The "personal best" celebration triggers dopamine even though it's just comparing numbers with yourself.
+
+### Tradeoff: Fixed Question Bank vs. AI Generation
+The 45-question bank is static and memorizable. I could have added AI-generated infinite questions. The tradeoff: personality over infinite variety. Fixed questions create shared experience—"oh, that train problem"—like a known adversary. Random AI questions feel cold and disposable. This is a study tool, not a Turing test.
+
+### What I Chose NOT to Build
+No social features. No leaderboards, no sharing scores, no "challenge a friend." Your progress is yours alone. The decision: competition adds anxiety. This tool is for personal growth, not relative ranking. If you want to brag, screenshot it. The app doesn't need to know your friends exist.

@@ -1,16 +1,96 @@
 import { useState } from 'react'
 import { evaluate } from 'mathjs'
-import { Delete, X, Divide, Minus, Plus, Equal, Hash } from 'lucide-react'
+import { Delete, X, Divide, Minus, Plus, Equal, Hash, ChevronUp, ChevronDown, Percent } from 'lucide-react'
+import { cn } from '@/utils/cn'
+
+type Mode = 'basic' | 'scientific'
 
 export function Calculator() {
   const [expression, setExpression] = useState('')
   const [result, setResult] = useState('')
+  const [mode, setMode] = useState<Mode>('basic')
+  const [history, setHistory] = useState<string[]>([])
+  const [memory, setMemory] = useState<number | null>(null)
 
   const handleKey = (key: string) => {
+    // Memory operations
+    if (key === 'MC') {
+      setMemory(null)
+      return
+    }
+    if (key === 'MR') {
+      if (memory !== null) {
+        setExpression(prev => prev + memory.toString())
+      }
+      return
+    }
+    if (key === 'M+') {
+      try {
+        const current = evaluate(expression) as number
+        setMemory(prev => (prev ?? 0) + current)
+        setResult('M+')
+      } catch {
+        setResult('Error')
+      }
+      return
+    }
+    if (key === 'M-') {
+      try {
+        const current = evaluate(expression) as number
+        setMemory(prev => (prev ?? 0) - current)
+        setResult('M-')
+      } catch {
+        setResult('Error')
+      }
+      return
+    }
+
+    // Scientific functions
+    if (key === 'sin' || key === 'cos' || key === 'tan') {
+      setExpression(prev => prev + `${key}(`)
+      return
+    }
+    if (key === 'log' || key === 'ln' || key === 'sqrt') {
+      setExpression(prev => prev + `${key}(`)
+      return
+    }
+    if (key === '^') {
+      setExpression(prev => prev + '^')
+      return
+    }
+    if (key === 'π') {
+      setExpression(prev => prev + 'pi')
+      return
+    }
+    if (key === 'e') {
+      setExpression(prev => prev + 'e')
+      return
+    }
+    if (key === '!') {
+      setExpression(prev => prev + '!')
+      return
+    }
+
+    // Percentage
+    if (key === '%') {
+      try {
+        const res = evaluate(expression + '/100')
+        setResult(res.toString())
+        setExpression(res.toString())
+      } catch {
+        setResult('Error')
+      }
+      return
+    }
+
+    // Basic operations
     if (key === '=') {
       try {
         const res = evaluate(expression)
-        setResult(res.toString())
+        const resultStr = res.toString()
+        setResult(resultStr)
+        // Add to history
+        setHistory(prev => [`${expression} = ${resultStr}`, ...prev].slice(0, 10))
       } catch (err) {
         setResult('Error')
       }
@@ -19,12 +99,16 @@ export function Calculator() {
       setResult('')
     } else if (key === 'DEL') {
       setExpression(prev => prev.slice(0, -1))
+    } else if (key === 'ANS') {
+      if (result && result !== 'Error') {
+        setExpression(prev => prev + result)
+      }
     } else {
       setExpression(prev => prev + key)
     }
   }
 
-  const buttons = [
+  const basicButtons = [
     ['C', '(', ')', '/'],
     ['7', '8', '9', '*'],
     ['4', '5', '6', '-'],
@@ -32,41 +116,110 @@ export function Calculator() {
     ['0', '.', 'DEL', '=']
   ]
 
+  const scientificButtons = [
+    ['sin', 'cos', 'tan', 'deg'],
+    ['log', 'ln', 'sqrt', '^'],
+    ['π', 'e', '!', 'ANS'],
+    ['MC', 'MR', 'M+', 'M-']
+  ]
+
   return (
-    <div className="max-w-md mx-auto glass p-8 rounded-[2.5rem] shadow-2xl space-y-8">
+    <div className="max-w-lg mx-auto glass p-6 md:p-8 rounded-[2.5rem] shadow-2xl space-y-6">
+      {/* Mode Toggle & Memory Indicator */}
+      <div className="flex justify-between items-center">
+        <button
+          onClick={() => setMode(mode === 'basic' ? 'scientific' : 'basic')}
+          className="text-[10px] font-black uppercase tracking-widest text-slate-500 hover:text-blue-500 transition-colors flex items-center gap-1"
+        >
+          {mode === 'basic' ? <ChevronDown size={14} /> : <ChevronUp size={14} />}
+          {mode === 'basic' ? 'Basic' : 'Scientific'}
+        </button>
+        {memory !== null && (
+          <span className="text-[10px] font-bold uppercase text-blue-500">M: {memory.toFixed(2)}</span>
+        )}
+      </div>
+
       {/* Display */}
-      <div className="bg-slate-50 dark:bg-slate-900/50 p-6 rounded-3xl text-right space-y-2 min-h-[120px] flex flex-col justify-end">
-        <p className="text-sm font-mono text-slate-400 overflow-hidden whitespace-nowrap">{expression || '0'}</p>
-        <p className="text-4xl font-display font-black text-blue-600 dark:text-blue-400 truncate">
+      <div className="bg-slate-50 dark:bg-slate-900/50 p-4 md:p-6 rounded-3xl text-right space-y-2 min-h-[100px] md:min-h-[120px] flex flex-col justify-end">
+        <p className="text-xs md:text-sm font-mono text-slate-400 overflow-hidden whitespace-nowrap">{expression || '0'}</p>
+        <p className="text-2xl md:text-4xl font-display font-black text-blue-600 dark:text-blue-400 truncate">
           {result || expression || '0'}
         </p>
       </div>
 
-      {/* Grid */}
-      <div className="grid grid-cols-4 gap-3">
-        {buttons.flat().map((btn) => (
+      {/* Scientific Buttons */}
+      {mode === 'scientific' && (
+        <div className="grid grid-cols-4 gap-2">
+          {scientificButtons.flat().map((btn) => (
+            <button
+              key={btn}
+              onClick={() => handleKey(btn)}
+              className="calc-btn calc-btn-scientific text-xs md:text-sm"
+            >
+              {btn === '^' ? 'x^y' :
+               btn === 'deg' ? 'DEG' :
+               btn === 'sqrt' ? '√' :
+               btn}
+            </button>
+          ))}
+        </div>
+      )}
+
+      {/* Basic Grid */}
+      <div className="grid grid-cols-4 gap-2 md:gap-3">
+        {basicButtons.flat().map((btn) => (
           <button
             key={btn}
             onClick={() => handleKey(btn)}
-            className={clsx(
+            className={cn(
               "calc-btn",
-              ['/', '*', '-', '+', '(', ')'].includes(btn) ? "calc-btn-op" : 
-              btn === '=' ? "calc-btn-action" : 
+              ['/', '*', '-', '+', '(', ')'].includes(btn) ? "calc-btn-op" :
+              btn === '=' ? "calc-btn-action" :
               btn === 'C' ? "bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400" :
               "calc-btn-num"
             )}
           >
-            {btn === '/' ? <Divide size={20} /> :
-             btn === '*' ? <X size={20} /> :
-             btn === '-' ? <Minus size={20} /> :
-             btn === '+' ? <Plus size={20} /> :
-             btn === '=' ? <Equal size={24} /> :
-             btn === 'DEL' ? <Delete size={20} /> :
+            {btn === '/' ? <Divide size={18} /> :
+             btn === '*' ? <X size={18} /> :
+             btn === '-' ? <Minus size={18} /> :
+             btn === '+' ? <Plus size={18} /> :
+             btn === '=' ? <Equal size={20} /> :
+             btn === 'DEL' ? <Delete size={18} /> :
              btn}
           </button>
         ))}
+        {/* Percent button */}
+        <button
+          onClick={() => handleKey('%')}
+          className="calc-btn calc-btn-op"
+        >
+          <Percent size={18} />
+        </button>
       </div>
-      
+
+      {/* History */}
+      {history.length > 0 && mode === 'scientific' && (
+        <div className="pt-4 border-t border-slate-100 dark:border-slate-800 max-h-32 overflow-y-auto">
+          <p className="text-[10px] font-bold uppercase text-slate-500 mb-2">Recent Calculations</p>
+          <div className="space-y-1">
+            {history.slice(0, 5).map((entry, i) => (
+              <p
+                key={i}
+                onClick={() => {
+                  const result = entry.split(' = ')[1]
+                  if (result) {
+                    setExpression(prev => prev + result)
+                  }
+                }}
+                className="text-xs font-mono text-slate-600 dark:text-slate-400 cursor-pointer hover:text-blue-500 truncate"
+              >
+                {entry}
+              </p>
+            ))}
+          </div>
+        </div>
+      )}
+
       <div className="pt-4 border-t border-slate-100 dark:border-slate-800">
         <p className="text-[10px] font-black uppercase tracking-widest text-slate-400 text-center flex items-center justify-center gap-2">
           <Hash size={12} /> Powered by Math.js
@@ -76,6 +229,4 @@ export function Calculator() {
   )
 }
 
-function clsx(...classes: any[]) {
-  return classes.filter(Boolean).join(' ')
-}
+

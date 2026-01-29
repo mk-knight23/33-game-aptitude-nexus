@@ -6,6 +6,7 @@ import {
   Brain
 } from 'lucide-react'
 import { useAptiStore } from '@/stores/aptiStore'
+import { cn } from '@/utils/cn'
 import type { TestResult } from '@/types/apti'
 
 export function TestEngine() {
@@ -80,7 +81,7 @@ export function TestEngine() {
             <button
               key={idx}
               onClick={() => submitAnswer(question.id, idx)}
-              className={clsx(
+              className={cn(
                 "w-full text-left p-6 rounded-2xl border-2 transition-all group flex items-center justify-between",
                 currentTest.answers[question.id] === idx 
                   ? "border-apti-primary bg-apti-primary/5" 
@@ -88,7 +89,7 @@ export function TestEngine() {
               )}
             >
               <div className="flex items-center gap-4">
-                <span className={clsx(
+                <span className={cn(
                   "w-8 h-8 rounded-lg flex items-center justify-center font-bold text-sm",
                   currentTest.answers[question.id] === idx ? "bg-apti-primary text-white" : "bg-slate-100 dark:bg-slate-800 text-slate-500"
                 )}>
@@ -123,6 +124,4 @@ export function TestEngine() {
   )
 }
 
-function clsx(...classes: any[]) {
-  return classes.filter(Boolean).join(' ')
-}
+

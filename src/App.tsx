@@ -12,6 +12,7 @@ import { Calculator } from './components/calculator/Calculator'
 import { TestEngine } from './components/test/TestEngine'
 import { Dashboard } from './components/Dashboard'
 import { ResultsView } from './components/ResultsView'
+import { cn } from '@/utils/cn'
 
 export default function App() {
   const { view, setView, isDarkMode, toggleDarkMode } = useAptiStore()
@@ -37,7 +38,7 @@ export default function App() {
              <div className="hidden sm:flex bg-slate-100 dark:bg-slate-900 p-1 rounded-2xl mr-4">
                 <button 
                   onClick={() => setView('calculator')}
-                  className={clsx(
+                  className={cn(
                     "px-4 py-2 rounded-xl text-xs font-black uppercase tracking-widest transition-all",
                     view === 'calculator' ? "bg-white dark:bg-slate-800 text-apti-primary shadow-sm" : "text-slate-400 hover:text-slate-600"
                   )}
@@ -46,7 +47,7 @@ export default function App() {
                 </button>
                 <button 
                   onClick={() => setView('test')}
-                  className={clsx(
+                  className={cn(
                     "px-4 py-2 rounded-xl text-xs font-black uppercase tracking-widest transition-all",
                     view === 'test' ? "bg-white dark:bg-slate-800 text-apti-primary shadow-sm" : "text-slate-400 hover:text-slate-600"
                   )}
@@ -140,6 +141,4 @@ export default function App() {
   )
 }
 
-function clsx(...classes: any[]) {
-  return classes.filter(Boolean).join(' ')
-}
+
