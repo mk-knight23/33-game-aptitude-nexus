@@ -145,3 +145,25 @@ The 45-question bank is static and memorizable. I could have added AI-generated 
 
 ### What I Chose NOT to Build
 No social features. No leaderboards, no sharing scores, no "challenge a friend." Your progress is yours alone. The decision: competition adds anxiety. This tool is for personal growth, not relative ranking. If you want to brag, screenshot it. The app doesn't need to know your friends exist.
+
+## 🎉 Additional Features (V3)
+
+Three focused improvements for the testing experience:
+
+### Test Timer
+**Why added**: Real aptitude tests are timed. Practicing without a timer doesn't simulate actual conditions.
+
+**What changed**: Added an optional countdown timer (default: 15 minutes) that displays during tests. Can be toggled off in settings for stress-free practice. The timer shows a subtle warning when under 2 minutes remain.
+
+### Question Bookmarks
+**Why added**: During practice, you encounter questions you want to revisit later. Without bookmarks, you'd have to remember or screenshot them.
+
+**What changed**: Added a bookmark icon on each question. Bookmarked questions appear in a "Review" panel after the test completes. Useful for focusing on weak areas during later study sessions.
+
+### Weakness Highlighting
+**Why added**: The app showed scores but didn't help you identify specific areas needing improvement.
+
+**What changed**: After each test, your weakest category (Math/Logic/Verbal) is highlighted with a "Focus Area" recommendation. The category breakdown now shows color-coded performance bars.
+
+### Intentionally Rejected: AI Explanation Generation
+I considered adding AI-generated explanations for each answer. Rejected because it would require an API key or backend. The static explanations are concise and trustworthy. AI can hallucinate, and for aptitude prep, accuracy matters more than cleverness.
