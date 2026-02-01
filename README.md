@@ -135,10 +135,12 @@ MIT License - see [LICENSE](LICENSE) for details
 
 ---
 
-### Live Demo
-- GitHub Pages: <https://mk-knight23.github.io/39-Aptitude-Calculator/>
-- Vercel: [Deploy your own](https://vercel.com/new)
-- Netlify: [Deploy your own](https://app.netlify.com/start)
+## 🎮 Live Demos
+
+| Platform | URL |
+|----------|-----|
+| **Vercel** | [33-game-aptitude-nexus.vercel.app](https://33-game-aptitude-nexus.vercel.app) |
+| **Render** | [three3-game-aptitude-nexus.onrender.com](https://three3-game-aptitude-nexus.onrender.com) |
 
 ---
 
