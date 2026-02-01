@@ -1,13 +1,15 @@
 @import "tailwindcss";
 
 @theme {
-  --color-apti-bg: #fdfdfd;
-  --color-apti-dark: #0a0a0a;
-  --color-apti-primary: #2563eb;
-  --color-apti-secondary: #7c3aed;
-  --color-apti-accent: #059669;
+  --color-nexus-bg: #0f172a;
+  --color-nexus-card: #1e293b;
+  --color-nexus-primary: #06b6d4;
+  --color-nexus-secondary: #6366f1;
+  --color-nexus-accent: #e879f9;
+  --color-nexus-success: #10b981;
 
   --font-mono: "JetBrains Mono", monospace;
+  --font-display: "Orbitron", sans-serif;
 }
 
 :root {
@@ -23,14 +25,14 @@ html {
 }
 
 body {
-  @apply bg-apti-bg text-slate-900 dark:text-slate-100 transition-colors duration-300 antialiased;
+  @apply bg-nexus-bg text-slate-100 antialiased;
   margin: 0;
   min-height: 100vh;
   font-family: 'Inter', system-ui, sans-serif;
 }
 
 @utility glass {
-  @apply bg-white/70 dark:bg-slate-900/70 backdrop-blur-md border border-slate-200 dark:border-slate-800/50;
+  @apply bg-nexus-card/70 backdrop-blur-md border border-white/10;
 }
 
 @utility calc-btn {
@@ -38,17 +40,17 @@ body {
 }
 
 @utility calc-btn-num {
-  @apply bg-slate-50 dark:bg-slate-800/50 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800;
+  @apply bg-nexus-card text-slate-300 hover:bg-white/10;
 }
 
 @utility calc-btn-op {
-  @apply bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 hover:bg-blue-100 dark:hover:bg-blue-900/30;
+  @apply bg-nexus-secondary/10 text-nexus-secondary hover:bg-nexus-secondary/20;
 }
 
 @utility calc-btn-action {
-  @apply bg-blue-600 text-white hover:bg-blue-700 shadow-lg shadow-blue-600/20;
+  @apply bg-nexus-primary text-black hover:bg-white shadow-[0_0_15px_#06b6d466];
 }
 
 @utility calc-btn-scientific {
-  @apply h-10 rounded-xl font-semibold text-slate-600 dark:text-slate-400 bg-purple-50 dark:bg-purple-900/20 hover:bg-purple-100 dark:hover:bg-purple-900/30 transition-all active:scale-95;
+  @apply h-10 rounded-xl font-semibold text-slate-400 bg-nexus-card hover:bg-white/5 transition-all active:scale-95;
 }

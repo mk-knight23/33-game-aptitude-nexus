@@ -1,16 +1,23 @@
-# AptiCalc - Advanced Aptitude Assessment Tool
+# 33-game-aptitude-nexus
 
-A professional-grade application for mathematical calculations and logical aptitude testing. Built with React 18, TypeScript, and Tailwind CSS.
+<p align="center">
+  <img src="https://img.shields.io/badge/Version-3.0.0-06B6D4?style=for-the-badge" alt="Version">
+  <img src="https://img.shields.io/badge/Style-Quantum_Nexus-4F46E5?style=for-the-badge" alt="Style">
+  <img src="https://img.shields.io/badge/Stack-React_Zustand-61DAFB?style=for-the-badge&logo=react" alt="Stack">
+</p>
 
-## Features Comparison
+## 🌐 The Neural Calculation Protocol
 
-| Feature | v1.0 | v2.0 (Current) |
+**APTITUDE_NEXUS** is a professional-grade intelligence assessment platform. It combines a high-precision scientific calculator core with a multi-modal aptitude testing engine, all wrapped in a sleek, "Quantum Institute" interface.
+
+## ⚡ Nexus Features
+
+| Module | Legacy (v1.0) | Nexus Core (v3.0) |
 |:---|:---|:---|
-| **Question Bank** | 5 questions | **45 questions (15 per category)** |
-| **Test Categories** | Mixed only | **Math, Logic, Verbal, or Mixed** |
-| **Calculator** | Basic operations | **Scientific mode with memory & history** |
-| **Analytics** | Basic score | **Performance level, trends, suggestions** |
-| **Progress Tracking** | History only | **Visual charts and improvement tips** |
+| **Question Bank** | 5 questions | **45+ Adaptive Modules** |
+| **Logic Engine** | Basic Arithmetic | **Scientific + Neural Memory** |
+| **Analytics** | Simple Score | **Performance Ring & Trend Analysis** |
+| **Interface** | Standard | **Quantum Glassmorphism** |
 
 ## Features
 

@@ -1,8 +1,12 @@
 {
-  "name": "aptitude-calculator",
+  "name": "33-game-aptitude-nexus",
   "private": true,
   "version": "2.0.0",
   "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mk-knight23/33-game-aptitude-nexus.git"
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
