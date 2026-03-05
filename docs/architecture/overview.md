@@ -1,10 +1,6 @@
-# Architecture: Aptitude Challenge Platform
+# Architecture Overview
 
-## Overview
-
-Aptitude Challenge Platform is a Game built with React + Framer Motion.
-
-## System Architecture
+## System Design
 
 ```
 ┌─────────────────────────────────────────┐
@@ -19,32 +15,21 @@ Aptitude Challenge Platform is a Game built with React + Framer Motion.
                    │
 ┌──────────────────▼──────────────────────┐
 │        APPLICATION LAYER                │
-│                  React                 │
+│         Modern Frontend Stack          │
 └─────────────────────────────────────────┘
 ```
 
 ## Technology Stack
 
-### Frontend
-- Framework: React
+- Framework: Modern (React/Vue/Angular)
 - Build: Vite
 - Styling: Tailwind CSS
 - Language: TypeScript
-
-### CI/CD
-- Platform: GitHub Actions
-- Schedule: Every 6 hours
-- Security: Trivy, TruffleHog
-
-### Deployment
-- Primary: Vercel
-- Secondary: Netlify, Firebase, Cloudflare
 
 ## Security
 
 - Security headers on all platforms
 - Automated secret scanning
-- Dependency vulnerability checks
 - XSS protection
 
 ## Performance
@@ -52,4 +37,3 @@ Aptitude Challenge Platform is a Game built with React + Framer Motion.
 - Optimized builds
 - CDN distribution
 - Caching strategies
-- Lazy loading
