@@ -8,6 +8,7 @@
     "url": "git+https://github.com/mk-knight23/33-game-aptitude-nexus.git"
   },
   "scripts": {
+    "production": "npm run build && npm start",
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview"
